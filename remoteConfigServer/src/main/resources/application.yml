@@ -11,5 +11,13 @@ spring:
           search-paths: gitconfig
           username: egbean
           password: wfw12345
+      label: master
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
 
 

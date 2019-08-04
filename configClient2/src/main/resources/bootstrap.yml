@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    config:
+      #请求的配置文件名
+      name: nativeConfig-dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: gitConfigServer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
