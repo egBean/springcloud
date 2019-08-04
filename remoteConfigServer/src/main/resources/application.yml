@@ -1,0 +1,15 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: gitConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/egBean/springcloud.git
+          search-paths: gitconfig
+          username: egbean
+          password: wfw12345
+
+

@@ -17,6 +17,7 @@
         <module>hystrix</module>
         <module>config</module>
         <module>configClient</module>
+        <module>remoteConfigServer</module>
     </modules>
 
     <!--设置父工程 -->

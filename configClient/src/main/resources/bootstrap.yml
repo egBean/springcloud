@@ -5,6 +5,6 @@ spring:
     active: dev
   cloud:
     config:
-      uri: http://localhost:8762
+      uri: http://localhost:8090
       #先判断configServer是否正常
       fail-fast: true
