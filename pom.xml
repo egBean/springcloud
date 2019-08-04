@@ -19,6 +19,8 @@
         <module>configClient</module>
         <module>remoteConfigServer</module>
         <module>configClient2</module>
+        <module>zipkinServer</module>
+        <module>zipkinClient</module>
     </modules>
 
     <!--设置父工程 -->

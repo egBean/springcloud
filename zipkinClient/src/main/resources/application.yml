@@ -1,0 +1,13 @@
+server:
+  port: 8099
+spring:
+  application:
+    name: zipkinClient
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9090
