@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: nativeConfig
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8762
+      #先判断configServer是否正常
+      fail-fast: true
