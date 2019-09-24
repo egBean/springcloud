@@ -5,3 +5,5 @@
 /eurekaprovider1/target/classes/
 /eurekaserver/target/classes/
 /nativeConfigServer/target/classes/
+/feigndemo/target/classes/
+/Zuuldemo/target/classes/
