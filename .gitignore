@@ -1,3 +1,7 @@
 **/*.iml
 /.idea/
 
+/configClient/target/classes/
+/eurekaprovider1/target/classes/
+/eurekaserver/target/classes/
+/nativeConfigServer/target/classes/
