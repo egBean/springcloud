@@ -10,3 +10,4 @@ eureka:
 zuul:
   routes:
     provider1: /p1/**
+    feign: /fei/**
