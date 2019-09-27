@@ -13,14 +13,18 @@ public class Example {
         SpringApplication.run(Example.class,args);
     }
 
-    @Bean
+    /*@Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p
-                        .path("/get")
-                        .filters(f -> f.addRequestHeader("Hello", "World"))
-                        .uri("http://httpbin.org:80"))
+                        .path("/p1/**")
+                        .filters(f -> {
+                            f.addRequestHeader("Hello", "World");
+                            f.stripPrefix(1);
+                            return f;
+                        })
+                        .uri("lb://provider1"))
                 .build();
-    }
+    }*/
 
 }

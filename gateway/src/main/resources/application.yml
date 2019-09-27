@@ -1,0 +1,32 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      # 路由规则
+      routes:
+        - id: path_route
+          uri: lb://provider1
+          predicates:
+            - Path=/p1/**
+          # 切掉匹配路径一部分            请求为/p1/**  转发后为/**
+          filters:
+            - StripPrefix=1
+      #开启服务发现
+      discovery:
+        locator:
+          enabled: true
+          #开启小写路由
+          lower-case-service-id: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+#开启日志功能
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
