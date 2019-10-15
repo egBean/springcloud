@@ -11,3 +11,11 @@ zuul:
   routes:
     provider1: /p1/**
     feign: /fei/**
+    routeId:
+      path: /path/**
+      service-id: serviceId
+#ribbon:
+  # 请求处理超时时间，默认转发请求到服务超时时间太短，设为10s
+  #ReadTimeout: 10000
+  # 请求连接超时时间
+  #SocketTimeout: 3000
