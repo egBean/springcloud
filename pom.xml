@@ -22,6 +22,8 @@
         <module>zipkinServer</module>
         <module>zipkinClient</module>
         <module>gateway</module>
+        <module>oauth2-server</module>
+        <module>oauth2-resources</module>
     </modules>
 
     <!--设置父工程 -->
@@ -41,14 +43,12 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.59</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.6</version>
             <scope>provided</scope>
         </dependency>
 
@@ -57,15 +57,13 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <!--<version>Finchley.SR4</version>-->
-                <version>Greenwich.SR2</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
+                <dependency>
+                    <groupId>cn.eg</groupId>
+                    <artifactId>dependencies</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
         </dependencies>
 
     </dependencyManagement>
