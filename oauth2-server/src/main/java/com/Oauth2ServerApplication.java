@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tk.mybatis.spring.annotation.MapperScan;
 
 
 @RestController
 @SpringBootApplication
+@MapperScan("com.mapper")
 //客户端模式，无refresh_token http://client:secret@localhost:8080/oauth/token?grant_type=client_credentials
 //简化模式 http://localhost:8080/oauth/authorize?response_type=token&client_id=client
 //账号密码模式 http://client:secret@localhost:8080/oauth/token?username=admin&password=12345&grant_type=password
