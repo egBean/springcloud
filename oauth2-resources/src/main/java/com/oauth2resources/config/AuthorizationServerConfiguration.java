@@ -44,16 +44,36 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        /*Resource resource = new ClassPathResource("public.txt");
-        String publicKey = null;
-        try {
-            publicKey = inputStream2String(resource.getInputStream());
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-        converter.setVerifier(new RsaVerifier(publicKey));*/
+//        Resource resource = new ClassPathResource("public.txt");
+//        String publicKey = null;
+//        try {
+//            publicKey = inputStream2String(resource.getInputStream());
+//        } catch (final IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        converter.setVerifier(new RsaVerifier(publicKey));
         converter.setSigningKey("test-secret");
         return converter;
+    }
+
+    public static String inputStream2String(InputStream in) {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(in, "UTF-8");
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        BufferedReader br = new BufferedReader(reader);
+        StringBuilder sb = new StringBuilder();
+        String line = "";
+        try {
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
 

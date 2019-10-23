@@ -1,5 +1,6 @@
 package test;
 
+import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -8,6 +9,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.MacSigner;
+import org.springframework.security.jwt.crypto.sign.RsaVerifier;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
@@ -18,24 +20,81 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
 public class EncodeTest {
-    public static void main(String[] args) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
-        //System.out.println(new BCryptPasswordEncoder().encode("secret"));
-
-        /*String jwt = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJhcHAiLCJ3ZWIiXSwiZXhwIjoxNTcxMTgzMTc1LCJhdXRob3JpdGllcyI6WyJhYWEiXSwianRpIjoiZDBhZDEwNDQtZjI4Ni00N2E2LWE1MzgtYzU4N2ZkMzJkMjNjIiwiY2xpZW50X2lkIjoiY2xpZW50In0.RPC-Y_s6Ex4quFKVXBtqmMN0FoEC17mz7wqIgBkuYec02w-to5_AIAkVHjJrEAnh34JeIUYoazMxfkTtBHV83J5yvXESMFDV2IsORCLfN6zrjbVV2WSPfOUsBTJ7vg_pU4SKU0ZzbcnKcHpbuB69sdVF5GNhjD-Eu_jgJ-d6X4qCJePzvgUFKXHkHzf79TbT_h2k4cfbDr0AUclYruvUpCHaY88GpMt9uEoc0O0z5Q0g_VV9BPUMBMd-PqcqQfJubTZ9GRI3pBEYujC7EVW5JSSqh1KjM8dmoAHUSs4grOgAFLLwFrPF8skH9oYJqMIojBv6GeE3WzJKx1AztXrwSw";
-        Resource resource = new ClassPathResource("public.txt");
-        String publicKeyStr = inputStream2String(resource.getInputStream());
-        PublicKey publicKey = getPublicKey(publicKeyStr);
-        Claims claims = Jwts.parser().setSigningKey(publicKey)
-                .parseClaimsJws(jwt).getBody();*/
+    public static void main(String[] args) throws Exception {
+//        String jwt = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJhcHAiLCJ3ZWIiXSwiZXhwIjoxNTcxODgwNjQxLCJhdXRob3JpdGllcyI6WyJhYWEiXSwianRpIjoiOGY5NDEwMjgtYWEwOS00ZjMwLWFkNmYtNWE4MjhlMmY0YzdiIiwiY2xpZW50X2lkIjoiY2xpZW50In0.LrN2UpxvJIK-GqeE_sCohuAxtSf5EvN9hQQDP8QzNCjS5jZrDBOffQyyLUkq3Fjm-hwBdPWPd3UH9xJnsTUFQlT-cJs0m-4AKqoaNXKTwaxPhvcRJYWnS0IJhnxgOoUee-d8sFIu9rqG1NKICgYf9E3u8aLNCrn1jn5SRrpSiu9ZIMUSg1Pd3d5qX_1kn2WnpFjhJDUxuHl7KLSyEOtBanyniKY6b2Nx9F7hZW7TrznfEHz3gaEFG73nXLy99zswBWw1ftdZpE0L6qVq_yQu57PTa9fLWWShwdJN78769TaluLf_ojWCH5GHvhWFeDqLhqJ90dxBv3hBW_wNj49NTQ";
+//
+//        Resource resource = new ClassPathResource("public.txt");
+//        String publicKeyStr = inputStream2String(resource.getInputStream());
+//        System.out.println(parseTokenWithSpring(jwt,publicKeyStr));
+//
+//        Resource resource2 = new ClassPathResource("public2.txt");
+//        String publicKeyStr2 = inputStream2String(resource2.getInputStream());
+//        System.out.println(parseToken(jwt,publicKeyStr2));
 
         String key ="test-secret";
-        String fairJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFwcCIsIndlYiJdLCJleHAiOjE1NzEyNzQyNjEsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjM2MTFiZjYtZGUyZS00MGJkLThmYTctNGVkNmE4YjU3NjVmIiwiY2xpZW50X2lkIjoiY2xpZW50IiwidXNlcm5hbWUiOiJhZG1pbiJ9.6KkjHHybRK9lfZ-T22Ozri7R_qLkocKqfiR1f1iCGl0";
-        /*Jwt jwt = JwtHelper.decodeAndVerify(fairJwt, new MacSigner(new SecretKeySpec(key.getBytes(), "HMACSHA256")));
-        String claimsStr = jwt.getClaims();*/
+        String fairJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJhcHAiLCJ3ZWIiXSwiZXhwIjoxNTcxODg1OTQ4LCJhdXRob3JpdGllcyI6WyJhYWEiXSwianRpIjoiYjJhNGJhNDYtNTFhZi00MWI2LTllMmUtYjZhZTdjN2I1OWZjIiwiY2xpZW50X2lkIjoiY2xpZW50In0.0oHqsV1ajl5QQkA4thNVCPhKjlqEkA_BpuddFoKhTBo";
+        System.out.println(parseTokenFairWithSpring(fairJwt,key));
+        System.out.println(parseTokenFair(fairJwt,key));
 
-        Claims claims = Jwts.parser().setSigningKey(new SecretKeySpec(key.getBytes(), "HMACSHA256")).parseClaimsJws(fairJwt).getBody();
-        System.out.println("zzzz");
 
+    }
+
+    /**
+     * 此方式需要去除publicKey 的头尾
+     * @param token
+     * @param key
+     * @return
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     */
+    public static String parseTokenFair(String token,String key) throws Exception {
+        Claims claims = Jwts.parser().setSigningKey(new SecretKeySpec(key.getBytes(), "HMACSHA256"))
+                .parseClaimsJws(token).getBody();
+        return JSON.toJSONString(claims);
+    }
+
+    /**
+     * 此方式需要去除publicKey 的头尾
+     * @param token
+     * @param key
+     * @return
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     */
+    public static String parseTokenFairWithSpring(String token,String key) throws Exception {
+        Jwt jwt = JwtHelper.decodeAndVerify(token, new MacSigner(key));
+        //Jwt jwt = JwtHelper.decodeAndVerify(token, new MacSigner(new SecretKeySpec(key.getBytes(), "HMACSHA256")));
+        String claimsStr = jwt.getClaims();
+        return claimsStr;
+
+    }
+
+    /**
+     * 此方式需要去除publicKey 的头尾
+     * @param token
+     * @param key
+     * @return
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     */
+    public static String parseToken(String token,String key) throws Exception {
+        PublicKey publicKey = getPublicKey(key);
+        Claims claims = Jwts.parser().setSigningKey(publicKey)
+                .parseClaimsJws(token).getBody();
+        return JSON.toJSONString(claims);
+    }
+
+    /**
+     * spring方式解析,不需要去除publicKey 的头尾。jwtAccessConverter配置中就是用此种方式。
+     * @param token
+     * @param key
+     * @return
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     */
+    public static String parseTokenWithSpring(String token,String key) throws Exception {
+        Jwt jwt = JwtHelper.decodeAndVerify(token, new RsaVerifier(key));
+        return jwt.getClaims();
     }
 
     public static String inputStream2String(InputStream in) {
@@ -59,17 +118,9 @@ public class EncodeTest {
     }
 
     public static PublicKey getPublicKey(String publicKeyBase64) throws NoSuchAlgorithmException, InvalidKeySpecException {
-//        String pem = publicKeyBase64
-//                .replaceAll("\\-*BEGIN.*KEY\\-*", "")
-//                .replaceAll("\\-*END.*KEY\\-*", "");
-        java.security.Security.addProvider(
-                new org.bouncycastle.jce.provider.BouncyCastleProvider()
-        );
         X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKeyBase64));
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
         PublicKey publicKey = keyFactory.generatePublic(pubKeySpec);
-        System.out.println(publicKey);
         return publicKey;
     }
 }

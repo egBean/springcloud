@@ -73,11 +73,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     //token加密方式
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        /*final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        KeyStoreKeyFactory keyStoreKeyFactory =
-                new KeyStoreKeyFactory(new ClassPathResource("giga.jks"), "giga123".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("giga"));
-        return converter;*/
+//        final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        KeyStoreKeyFactory keyStoreKeyFactory =
+//                new KeyStoreKeyFactory(new ClassPathResource("key.keystore"), "storepass".toCharArray());
+//        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("alias"));
+//        return converter;
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("test-secret");
         return converter;
