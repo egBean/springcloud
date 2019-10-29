@@ -19,6 +19,9 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
+/**
+ * RSA性能消耗大概是对称加密的10倍。
+ */
 public class EncodeTest {
     public static void main(String[] args) throws Exception {
 //        String jwt = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJhcHAiLCJ3ZWIiXSwiZXhwIjoxNTcxODgwNjQxLCJhdXRob3JpdGllcyI6WyJhYWEiXSwianRpIjoiOGY5NDEwMjgtYWEwOS00ZjMwLWFkNmYtNWE4MjhlMmY0YzdiIiwiY2xpZW50X2lkIjoiY2xpZW50In0.LrN2UpxvJIK-GqeE_sCohuAxtSf5EvN9hQQDP8QzNCjS5jZrDBOffQyyLUkq3Fjm-hwBdPWPd3UH9xJnsTUFQlT-cJs0m-4AKqoaNXKTwaxPhvcRJYWnS0IJhnxgOoUee-d8sFIu9rqG1NKICgYf9E3u8aLNCrn1jn5SRrpSiu9ZIMUSg1Pd3d5qX_1kn2WnpFjhJDUxuHl7KLSyEOtBanyniKY6b2Nx9F7hZW7TrznfEHz3gaEFG73nXLy99zswBWw1ftdZpE0L6qVq_yQu57PTa9fLWWShwdJN78769TaluLf_ojWCH5GHvhWFeDqLhqJ90dxBv3hBW_wNj49NTQ";
