@@ -12,3 +12,9 @@ eureka:
 feign:
   hystrix:
     enabled: true
+#    feign调用超时的配置
+  client:
+    config:
+      default:
+        connect-timeout: 20000
+        read-timeout: 20000
