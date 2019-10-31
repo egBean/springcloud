@@ -1,11 +1,3 @@
 **/*.iml
 /.idea/
-
-/configClient/target/classes/
-/eurekaprovider1/target/classes/
-/eurekaserver/target/classes/
-/nativeConfigServer/target/classes/
-/feigndemo/target/classes/
-/Zuuldemo/target/classes/
-/gateway/target/
-/oauth2-server/target/
+/**/target/**
