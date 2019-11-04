@@ -64,6 +64,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         //oauth2 提供了一些端点,CheckTokenEndpoint,TokenKeyEndpoint.但是这些端点默认是denyAll，无法访问。
+        //tokenKeyAccess是给client获取秘钥用的，最好是只在非对称加密时使用，否则会泄露对称加密秘钥。
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
