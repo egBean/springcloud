@@ -40,8 +40,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     //使用tokenstore存储相关信息。
     @Bean
     public TokenStore tokenStore(){
-        //return new JdbcTokenStore(dataSource);
-        return new JwtTokenStore(accessTokenConverter()); //使用jwttokenstore在获取授权码时候无法选择scope，可能是个bug。。
+        return new JdbcTokenStore(dataSource);
+//        return new JwtTokenStore(accessTokenConverter()); //使用jwttokenstore在获取授权码时候无法选择scope，可能是个bug。。
     }
 
     //通过数据源相关表拿到clientDetails相关信息
