@@ -11,8 +11,7 @@
         <input name="user_oauth_approval" value="true" type="hidden"/>
         <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}" />
         <ul>
-            <li><div class="form-group">scope.app: <input type="radio" name="scope.app" value="true">Approve</input> <input type="radio" name="scope.app" value="false" checked>Deny</input></div></li>
-            <li><div class="form-group">scope.web: <input type="radio" name="scope.web" value="true">Approve</input> <input type="radio" name="scope.web" value="false" checked>Deny</input></div></li>
+            <li th:each="s : ${scopeList}"><div class="form-group"><span>[[${s}]]</span> <input type="radio" th:name="${s}" value="true">Approve</input> <input type="radio" th:name="${s}" value="false" checked>Deny</input></div></li>
         </ul>
         <label>
             <input name="authorize" value="Authorize" type="submit"/>

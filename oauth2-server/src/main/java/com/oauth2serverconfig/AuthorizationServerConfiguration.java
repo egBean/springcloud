@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
@@ -39,8 +40,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     //使用tokenstore存储相关信息。
     @Bean
     public TokenStore tokenStore(){
-        return new JdbcTokenStore(dataSource);
-        //return new JwtTokenStore(accessTokenConverter()); 使用jwttokenstore在获取授权码时候无法选择scope，可能是个bug。。
+        //return new JdbcTokenStore(dataSource);
+        return new JwtTokenStore(accessTokenConverter()); //使用jwttokenstore在获取授权码时候无法选择scope，可能是个bug。。
     }
 
     //通过数据源相关表拿到clientDetails相关信息
