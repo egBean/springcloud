@@ -8,12 +8,9 @@ public class FeignErrorFactory implements FallbackFactory<FeignControllerInterfa
 
     @Override
     public FeignControllerInterface create(Throwable throwable) {
-        return new FeignControllerInterface() {
-            @Override
-            public String getPort() {
-                String result = throwable.getMessage();
-                return result;
-            }
+        return () -> {
+            String result = throwable.getMessage();
+            return result;
         };
     }
 }
