@@ -24,6 +24,7 @@
         <module>gateway</module>
         <module>oauth2-server</module>
         <module>oauth2-resources</module>
+        <module>admin</module>
     </modules>
 
     <!--设置父工程 -->
